@@ -2,7 +2,7 @@ apps:
   - script: build/server.js
     env_staging:
       NODE_ENV: staging
-      BASE_URL: /queue-dev2
+      BASE_URL: /queue-dev
       PORT: 22502
     env_production:
       NODE_ENV: production
