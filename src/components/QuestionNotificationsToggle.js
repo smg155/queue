@@ -1,9 +1,8 @@
 /* eslint-env browser */
 import React, { Fragment } from 'react'
 import { Button, ButtonGroup } from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faBell from '@fortawesome/fontawesome-free-solid/faBell'
-import faInfo from '@fortawesome/fontawesome-free-solid/faInfoCircle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faInfo } from '@fortawesome/free-solid-svg-icons'
 
 import QuestionNotificationsToggleExplanationModal from './QuestionNotificationsToggleExplanationModal'
 
