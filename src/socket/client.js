@@ -11,11 +11,13 @@ import {
   updateQueueSuccess,
 } from '../actions/queue'
 import { replaceActiveStaff } from '../actions/activeStaff'
+import { promptForLogin } from '../actions/app'
 import { normalizeActiveStaff } from '../reducers/normalize'
 import { baseUrl } from '../util'
 
 const socketOpts = {
   path: `${baseUrl}/socket.io`,
+  reconnectionAttempts: 4,
 }
 
 const queueSockets = {}
@@ -73,6 +75,14 @@ export const connectToQueue = (dispatch, queueId) => {
   socket.on('queue:update', ({ queue }) =>
     handleQueueUpdate(dispatch, queueId, queue)
   )
+
+  // Error handling: will happen if out Shib session expires
+  // See socketOpts above - we'll retry the connection 4 times before bailing
+  // and assuming the worst.
+  socket.on('reconnect_error', (e) => console.log(e))
+  socket.on('reconnect_failed', () => {
+    dispatch(promptForLogin())
+  })
 }
 
 export const disconnectFromQueue = queueId => {

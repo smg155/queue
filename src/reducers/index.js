@@ -5,6 +5,7 @@ import questions from './questions'
 import queues from './queues'
 import users from './users'
 import user from './user'
+import app from './app'
 
 const Reducer = combineReducers({
   activeStaff,
@@ -13,6 +14,7 @@ const Reducer = combineReducers({
   queues,
   users,
   user,
+  app,
 })
 
 export default Reducer

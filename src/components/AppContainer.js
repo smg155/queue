@@ -1,16 +1,24 @@
+/* eslint-env browser */
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { PageTransition } from 'next-page-transitions'
 
 import Header from './Header'
 import Footer from './Footer'
 import Loading from './Loading'
+import PromptLoginModal from './PromptLoginModal'
 
 const TIMEOUT = 200
+
+const reloadPage = () => {
+  window.location.reload()
+}
 
 const AppContainer = props => {
   return (
     <Fragment>
+      <PromptLoginModal isOpen={props.showLoginPrompt} confirm={reloadPage} />
       <Header />
       <PageTransition
         timeout={TIMEOUT}
@@ -69,6 +77,11 @@ const AppContainer = props => {
 
 AppContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  showLoginPrompt: PropTypes.bool.isRequired,
 }
 
-export default AppContainer
+const mapStateToProps = (state) => ({
+  showLoginPrompt: state.app.showLoginPrompt,
+})
+
+export default connect(mapStateToProps)(AppContainer)

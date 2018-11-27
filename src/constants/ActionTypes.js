@@ -40,3 +40,6 @@ export const UPDATE_USER_PREFERRED_NAME = makeActionStrings(
 export const REPLACE_QUESTIONS = 'REPLACE_QUESTIONS'
 export const UPDATE_QUEUES = 'UPDATE_QUEUES'
 export const REPLACE_ACTIVE_STAFF = 'REPLACE_ACTIVE_STAFF'
+
+/* These are related to truly global app state */
+export const PROMPT_FOR_LOGIN = 'PROMPT_FOR_LOGIN'
